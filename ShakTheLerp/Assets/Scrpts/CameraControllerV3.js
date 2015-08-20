@@ -4,6 +4,7 @@
      public var rotationTarget: Transform;
      public var speed: float = 5.0f;
      public var terrain: GameObject;
+     public var playerFollow: GameObject;
      private var cameraOffset: float = 15.0f;
      private var terrainHeight:float;
      private var t:float = 0.0f;
@@ -38,7 +39,7 @@
      }
      
      private function zoomOut():void{
-     	if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (cameraOffset <= 200))
+     	if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (cameraOffset <= 30))
      		{
      		this.transform.Translate((Vector3.up * Mathf.Pow(this.speed,1.2f) * Time.deltaTime), Space.World);
      		cameraOffset = this.transform.position.y;
@@ -47,7 +48,7 @@
      }
      
      private function zoomIn():void{
-     	if ((Input.GetAxis("Mouse ScrollWheel") > 0) && (cameraOffset >= 10))
+     	if ((Input.GetAxis("Mouse ScrollWheel") > 0) && (cameraOffset >= 5))
      		{
      		this.transform.Translate((Vector3.down * Mathf.Pow(this.speed,1.2f) * Time.deltaTime), Space.World);
      		cameraOffset = this.transform.position.y;
@@ -108,10 +109,10 @@
      
      public function Update(){
          if(!Input.GetMouseButton(1)){
-             this.moveRight();
-             this.moveLeft();
-             this.moveForward();
-             this.moveBackward();
+             //this.moveRight();
+             //this.moveLeft();
+             //this.moveForward();
+            // this.moveBackward();
              this.zoomOut();
              this.zoomIn();
          }
@@ -124,6 +125,7 @@
         // Debug.Log(lookPos.);
          var lookRot = Quaternion.LookRotation(lookPos - transform.position, Vector3.up);
          transform.rotation = Quaternion.Lerp(transform.rotation, lookRot, 15*Time.deltaTime);
+         transform.position = Vector3(playerFollow.transform.position.x, transform.position.y, playerFollow.transform.position.z - 5);
          
          
    		}

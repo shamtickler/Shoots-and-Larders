@@ -5,20 +5,13 @@ var speed : float = 10f;
 var range : float = 10f;
 var damage : float = 10f;
 var faceDirectionOfMovement : boolean = true;
-private var appliedForce: boolean = false;
-var rb: Rigidbody = GetComponent.<Rigidbody>();
 private var distance : float;
  
 
 function Update ()
-
-
 {
-if (appliedForce == false) 
-{
-//rb.AddRelativeForce(transform.forward * speed * -5);
-}
-    //transform.Translate(Vector3.forward * Time.deltaTime * speed);
+
+    transform.Translate(Vector3.forward * Time.deltaTime * speed);
     
     
     
