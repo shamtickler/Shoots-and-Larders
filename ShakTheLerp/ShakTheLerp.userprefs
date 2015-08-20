@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scrpts\CameraControllerV3.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scrpts\PlayerCharacterController.js">
     <Files>
-      <File FileName="Assets\Scrpts\Rotatio_Target.js" Line="5" Column="102" />
+      <File FileName="Assets\Scrpts\projectile_Controller.js" Line="32" Column="57" />
+      <File FileName="Assets\Scrpts\Rotatio_Target.js" Line="1" Column="1" />
       <File FileName="Assets\Scrpts\CameraControllerV3.js" Line="128" Column="131" />
-      <File FileName="Assets\Scrpts\PlayerCharacterController.js" Line="5" Column="18" />
-      <File FileName="Assets\Scrpts\projectile_Controller.js" Line="15" Column="5" />
-      <File FileName="Assets\Scrpts\PlayerController.js" Line="7" Column="33" />
+      <File FileName="Assets\Scrpts\PlayerCharacterController.js" Line="24" Column="31" />
+      <File FileName="Assets\Scrpts\PlayerController.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
