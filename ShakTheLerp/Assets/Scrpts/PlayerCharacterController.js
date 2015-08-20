@@ -1,6 +1,7 @@
 ﻿#pragma strict
 var speed : float = 20;
-//var bullet : GameObject;
+var bullet : GameObject;
+var barrel: Transform;
 private var lookTarget : Vector3;
 function Start () {
 
@@ -30,7 +31,7 @@ if(Input.GetKey(KeyCode.D)){
   
  if(Input.GetButtonUp("Fire1"))
         {
-         
+         Instantiate(bullet, barrel.position, transform.rotation);
        }
 
 
