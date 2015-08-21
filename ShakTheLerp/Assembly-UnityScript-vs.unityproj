@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scrpts\Basic_Enemy.js" />
      <Compile Include="Assets\Scrpts\CameraControllerV3.js" />
+     <Compile Include="Assets\Scrpts\LineRenderer_Tracer.js" />
      <Compile Include="Assets\Scrpts\PlayerCharacterController.js" />
      <Compile Include="Assets\Scrpts\PlayerController.js" />
      <Compile Include="Assets\Scrpts\Rotatio_Target.js" />

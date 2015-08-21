@@ -1,5 +1,6 @@
 ﻿#pragma strict
 var speed : float = 20;
+var range : float = 60;
 var bullet : GameObject;
 var barrel: Transform;
 var fireRate : float = 1;
@@ -37,23 +38,23 @@ if(Input.GetKey(KeyCode.D)){
  if(Input.GetButton("Fire1"))
         {
         if (x>=fireRate){
-        //Instantiate(bullet, barrel.position, transform.rotation);
         x = 0.0f;
-       var newLineObject = Instantiate(linePrefab, barrel.position, transform.rotation);
+       var newLineObject = Instantiate(linePrefab, barrel.position, barrel.transform.rotation);
        var newLine = newLineObject.GetComponent(LineRenderer);
        
         var shootRay = new Ray(barrel.transform.position, transform.forward);
-        if(Physics.Raycast(shootRay, hit, 500)){
+        if(Physics.Raycast(shootRay, hit, range)){
         	if(hit.collider.gameObject.tag == "Enemy"){
         		var EnemyScript : GameObject;
        			EnemyScript = hit.collider.gameObject;
         		EnemyScript.GetComponent(Basic_Enemy).ApplyDamage(damage);
         		newLine.SetPosition(0, barrel.transform.position);
         		newLine.SetPosition(1, hit.point);
-        		}else{
-        		newLine.SetPosition(0, transform.position);
-        		newLine.SetPosition(1, transform.TransformPoint(Vector3.forward * 500));
         		}
+        		       		
+        	}else{
+        	newLine.SetPosition(0, barrel.transform.position);
+        	newLine.SetPosition(1, (barrel.transform.position + barrel.transform.forward * range));
         	}
         }        
      }
