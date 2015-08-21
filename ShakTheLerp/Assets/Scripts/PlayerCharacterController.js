@@ -5,6 +5,7 @@ var bullet : GameObject;
 var barrel: Transform;
 var fireRate : float = 1;
 var damage : float = 20;
+var aimLayerMask : LayerMask;
 private var hit : RaycastHit;
 var linePrefab : GameObject; 
 private var x : float =0;
@@ -30,7 +31,7 @@ if(Input.GetKey(KeyCode.D)){
   
   var ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
   
-  if (Physics.Raycast (ray, hit)) { lookTarget = hit.point; }
+  if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; }
  transform.LookAt(lookTarget);
   var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
   

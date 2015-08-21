@@ -46,14 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scrpts\Basic_Enemy.js" />
-     <Compile Include="Assets\Scrpts\CameraControllerV3.js" />
-     <Compile Include="Assets\Scrpts\LineRenderer_Tracer.js" />
-     <Compile Include="Assets\Scrpts\PlayerCharacterController.js" />
-     <Compile Include="Assets\Scrpts\PlayerController.js" />
-     <Compile Include="Assets\Scrpts\Rotatio_Target.js" />
-     <Compile Include="Assets\Scrpts\Turret_ControllV3.js" />
-     <Compile Include="Assets\Scrpts\projectile_Controller.js" />
+     <Compile Include="Assets\Scripts\Basic_Enemy.js" />
+     <Compile Include="Assets\Scripts\CameraControllerV3.js" />
+     <Compile Include="Assets\Scripts\LineRenderer_Tracer.js" />
+     <Compile Include="Assets\Scripts\PlayerCharacterController.js" />
+     <Compile Include="Assets\Scripts\Rotatio_Target.js" />
+     <Compile Include="Assets\Scripts\Turret_ControllV3.js" />
+     <Compile Include="Assets\Scripts\projectile_Controller.js" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
