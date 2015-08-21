@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scrpts\PlayerCharacterController.js">
     <Files>
-      <File FileName="Assets\Scrpts\PlayerCharacterController.js" Line="30" Column="3" />
+      <File FileName="Assets\Scrpts\Turret_ControllV3.js" Line="38" Column="24" />
+      <File FileName="Assets\Scrpts\PlayerCharacterController.js" Line="50" Column="37" />
+      <File FileName="Assets\Scrpts\projectile_Controller.js" Line="36" Column="39" />
+      <File FileName="Assets\Scrpts\CameraControllerV3.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
