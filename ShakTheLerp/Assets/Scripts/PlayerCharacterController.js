@@ -7,12 +7,14 @@ var damage : float = 20;
 var aimLayerMask : LayerMask;
 var force : float = 100;
 var spreadFactor : float = 0.2;
+var jumpHeight : float = 10;
+private var originalHeight : float;
 private var hit : RaycastHit;
 var linePrefab : GameObject; 
 private var x : float =0;
 private var lookTarget : Vector3;
 function Start () {
-
+originalHeight = transform.position.y;
 }
 
 function Update () {
@@ -30,11 +32,22 @@ if(Input.GetKey(KeyCode.D)){
   }
   
   
+  
+  if (Input.GetKey(KeyCode.Space)){
+  if (transform.position.y < originalHeight + .1){
+  var rb : Rigidbody = GetComponent.<Rigidbody>();
+  rb.velocity = (transform.up * jumpHeight);
+  	}
+  }
+  
+  
   var ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
   
-  if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; }
+  if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards lookTarget
+  lookTarget.y = originalHeight;
  transform.LookAt(lookTarget);
-  var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
+ 
+   var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
   
   
  if(Input.GetButton("Fire1"))
@@ -47,19 +60,24 @@ if(Input.GetKey(KeyCode.D)){
        
        var direction : Vector3 = barrel.transform.forward;
        direction.x += Random.Range(-spreadFactor, spreadFactor);
-       //direction.y += Random.Range(-spreadFactor, spreadFactor);
        direction.z += Random.Range(-spreadFactor, spreadFactor);
        
         var shootRay = new Ray(barrel.transform.position, direction);
         if(Physics.Raycast(shootRay, hit, range)){
-        	var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
-        	hitRigidBody.AddForceAtPosition(force*shootRay.direction, hit.point);
+        	
         	if(hit.collider.gameObject.tag == "Enemy"){
+        		var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
+        		hitRigidBody.AddForceAtPosition(force*shootRay.direction, hit.point);
         		var EnemyScript : GameObject;
        			EnemyScript = hit.collider.gameObject;
-        		EnemyScript.GetComponent(Basic_Enemy).ApplyDamage(damage);
+        		EnemyScript.GetComponent(Basic_Enemy).ApplyDamage(damage); //Applies damage to the enemy
+        		
+        		
         	
-        		newLine.SetPosition(0, barrel.transform.position);
+        		newLine.SetPosition(0, barrel.transform.position); //Creates the line renderer to visualize the bullet
+        		newLine.SetPosition(1, hit.point);
+        		}else{
+        		newLine.SetPosition(0, barrel.transform.position); //Creates the line renderer to visualize the bullet
         		newLine.SetPosition(1, hit.point);
         		}
         		       		

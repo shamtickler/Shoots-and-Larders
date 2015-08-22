@@ -16,5 +16,5 @@ Instantiate(enemy, position, Quaternion.identity);
 spawnTimer = 0.0f;
 }
 spawnTimer += Time.deltaTime;
-Debug.Log("gos length = " + gos.Length);
+//Debug.Log("gos length = " + gos.Length);
 }
