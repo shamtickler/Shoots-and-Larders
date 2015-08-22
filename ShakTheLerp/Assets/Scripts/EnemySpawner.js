@@ -11,7 +11,7 @@ function Start () {
 function Update () {
 gos = GameObject.FindGameObjectsWithTag("Enemy");
 if (spawnFrequency <= spawnTimer && gos.Length < maxEnemies){
-var position: Vector3 = Vector3(Random.Range(-50.0, 50.0), 0, Random.Range(-50.0, 50.0));
+var position: Vector3 = Vector3(Random.Range(-50.0, 50.0), 1, Random.Range(-50.0, 50.0));
 Instantiate(enemy, position, Quaternion.identity);
 spawnTimer = 0.0f;
 }

@@ -6,6 +6,7 @@ var fireRate : float = 1;
 var damage : float = 20;
 var aimLayerMask : LayerMask;
 var force : float = 100;
+var spreadFactor : float = 0.2;
 private var hit : RaycastHit;
 var linePrefab : GameObject; 
 private var x : float =0;
@@ -40,13 +41,19 @@ if(Input.GetKey(KeyCode.D)){
         {
         if (x>=fireRate){
         x = 0.0f;
+ 		
        var newLineObject = Instantiate(linePrefab, barrel.position, barrel.transform.rotation);
        var newLine = newLineObject.GetComponent(LineRenderer);
        
-        var shootRay = new Ray(barrel.transform.position, transform.forward);
+       var direction : Vector3 = barrel.transform.forward;
+       direction.x += Random.Range(-spreadFactor, spreadFactor);
+       //direction.y += Random.Range(-spreadFactor, spreadFactor);
+       direction.z += Random.Range(-spreadFactor, spreadFactor);
+       
+        var shootRay = new Ray(barrel.transform.position, direction);
         if(Physics.Raycast(shootRay, hit, range)){
-        	//var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
-        	//hitRigidBody.AddForceAtPosition(force*shootRay.direction, hit.point);
+        	var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
+        	hitRigidBody.AddForceAtPosition(force*shootRay.direction, hit.point);
         	if(hit.collider.gameObject.tag == "Enemy"){
         		var EnemyScript : GameObject;
        			EnemyScript = hit.collider.gameObject;
@@ -58,7 +65,7 @@ if(Input.GetKey(KeyCode.D)){
         		       		
         	}else{
         	newLine.SetPosition(0, barrel.transform.position);
-        	newLine.SetPosition(1, (barrel.transform.position + barrel.transform.forward * range));
+        	newLine.SetPosition(1, (barrel.transform.position + direction * range));
         	}
         }        
      }
