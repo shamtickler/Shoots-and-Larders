@@ -1,11 +1,11 @@
 ﻿#pragma strict
-var speed : float = 20;
+var movementSpeed : float = 20;
 var range : float = 60;
-var bullet : GameObject;
 var barrel: Transform;
 var fireRate : float = 1;
 var damage : float = 20;
 var aimLayerMask : LayerMask;
+var force : float = 100;
 private var hit : RaycastHit;
 var linePrefab : GameObject; 
 private var x : float =0;
@@ -16,16 +16,16 @@ function Start () {
 
 function Update () {
   if(Input.GetKey(KeyCode.A)){
-             this.transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
+             this.transform.Translate(Vector3.left * movementSpeed * Time.deltaTime, Space.World);
   }
 if(Input.GetKey(KeyCode.D)){
-             this.transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+             this.transform.Translate(Vector3.right * movementSpeed * Time.deltaTime, Space.World);
   }
   if(Input.GetKey(KeyCode.W)){
-             this.transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.World);
+             this.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
   }
   if(Input.GetKey(KeyCode.S)){
-             this.transform.Translate(Vector3.back * speed * Time.deltaTime, Space.World);
+             this.transform.Translate(Vector3.back * movementSpeed * Time.deltaTime, Space.World);
   }
   
   
@@ -45,10 +45,13 @@ if(Input.GetKey(KeyCode.D)){
        
         var shootRay = new Ray(barrel.transform.position, transform.forward);
         if(Physics.Raycast(shootRay, hit, range)){
+        	//var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
+        	//hitRigidBody.AddForceAtPosition(force*shootRay.direction, hit.point);
         	if(hit.collider.gameObject.tag == "Enemy"){
         		var EnemyScript : GameObject;
        			EnemyScript = hit.collider.gameObject;
         		EnemyScript.GetComponent(Basic_Enemy).ApplyDamage(damage);
+        	
         		newLine.SetPosition(0, barrel.transform.position);
         		newLine.SetPosition(1, hit.point);
         		}
