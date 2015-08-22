@@ -8,16 +8,26 @@ var aimLayerMask : LayerMask;
 var force : float = 100;
 var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
+public var playerHealth : int = 500;
 private var originalHeight : float;
 private var hit : RaycastHit;
 var linePrefab : GameObject; 
 private var x : float =0;
 private var lookTarget : Vector3;
+
+
 function Start () {
 originalHeight = transform.position.y;
 }
 
+public function ApplyDamage (damage : float) {
+playerHealth = playerHealth - damage;
+
+
+}
+
 function Update () {
+Debug.Log("Player Health = " + playerHealth);
   if(Input.GetKey(KeyCode.A)){
              this.transform.Translate(Vector3.left * movementSpeed * Time.deltaTime, Space.World);
   }
