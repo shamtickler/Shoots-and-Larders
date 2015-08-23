@@ -9,10 +9,7 @@ var force : float = 100;
 var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
 var grenade : GameObject;
-var grenadeThrowPower : float = 100;
-var MuzzleFlash : GameObject;
-private var audio: AudioSource = GetComponent.<AudioSource>();
-public var gunshot1 : AudioClip;
+var grenadeThrowPower : float = 6;
 public var playerHealth : int = 500;
 private var originalHeight : float;
 private var hit : RaycastHit;
@@ -23,13 +20,10 @@ private var lookTarget : Vector3;
 
 function Start () {
 originalHeight = transform.position.y;
-
 }
 
 public function ApplyDamage (damage : float) {
 playerHealth = playerHealth - damage;
-
-
 }
 
 function Update () {
@@ -65,8 +59,8 @@ if(Input.GetKey(KeyCode.D)){
  var distanceToMouse = Vector3.Distance(transform.position, lookTarget);
  
    var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
-   
- if (Input.GetButtonDown("Fire2")){
+  
+  if (Input.GetButtonDown("Fire2")){
 
 var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotation);
  var grenaderb = grenadeObject.GetComponent(Rigidbody);
@@ -77,12 +71,20 @@ var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotat
   
  if(Input.GetButton("Fire1"))
         {
-        if (x>=fireRate){
+          ShootWeapon();   
+     }
+       
+  
+
+if (x <= fireRate){x = (x + Time.deltaTime);}
+
+}
+
+function ShootWeapon(){
+   
+   if (x>=fireRate){
         x = 0.0f;
-        var audio: AudioSource = GetComponent.<AudioSource>();
- 		audio.clip = gunshot1;
- 		audio.Play();
- 		Instantiate(MuzzleFlash, barrel.position, barrel.transform.rotation);
+ 		
        var newLineObject = Instantiate(linePrefab, barrel.position, barrel.transform.rotation);
        var newLine = newLineObject.GetComponent(LineRenderer);
        
@@ -113,11 +115,9 @@ var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotat
         	newLine.SetPosition(0, barrel.transform.position);
         	newLine.SetPosition(1, (barrel.transform.position + direction * range));
         	}
-        }        
-     }
-       
-  
+        }
 
-if (x <= fireRate){x = (x + Time.deltaTime);}
 
 }
+
+
