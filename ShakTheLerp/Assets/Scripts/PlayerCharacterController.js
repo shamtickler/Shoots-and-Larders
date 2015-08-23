@@ -10,6 +10,7 @@ var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
 var grenade : GameObject;
 var grenadeThrowPower : float = 6;
+public var gunshot1 : AudioClip;
 public var playerHealth : int = 500;
 private var originalHeight : float;
 private var hit : RaycastHit;
@@ -84,6 +85,10 @@ function ShootWeapon(){
    
    if (x>=fireRate){
         x = 0.0f;
+ 		
+ 		var audio: AudioSource = GetComponent.<AudioSource>(); //audio gunshot sounds
+ 		audio.clip = gunshot1;
+ 		audio.Play();
  		
        var newLineObject = Instantiate(linePrefab, barrel.position, barrel.transform.rotation);
        var newLine = newLineObject.GetComponent(LineRenderer);
