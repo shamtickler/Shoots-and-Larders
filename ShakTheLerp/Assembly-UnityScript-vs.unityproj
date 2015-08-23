@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\MuzzleFlash.js" />
      <Compile Include="Assets\Scripts\PlayerCharacterController.js" />
      <Compile Include="Assets\Scripts\Turret_ControllV3.js" />
+     <Compile Include="Assets\Scripts\UI\Health Script.js" />
      <Compile Include="Assets\Scripts\projectile_Controller.js" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
