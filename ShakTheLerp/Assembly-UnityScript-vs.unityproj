@@ -49,7 +49,9 @@
      <Compile Include="Assets\Scripts\Basic_Enemy.js" />
      <Compile Include="Assets\Scripts\CameraControllerV3.js" />
      <Compile Include="Assets\Scripts\EnemySpawner.js" />
+     <Compile Include="Assets\Scripts\Grenade_Basic.js" />
      <Compile Include="Assets\Scripts\LineRenderer_Tracer.js" />
+     <Compile Include="Assets\Scripts\MuzzleFlash.js" />
      <Compile Include="Assets\Scripts\PlayerCharacterController.js" />
      <Compile Include="Assets\Scripts\Turret_ControllV3.js" />
      <Compile Include="Assets\Scripts\projectile_Controller.js" />

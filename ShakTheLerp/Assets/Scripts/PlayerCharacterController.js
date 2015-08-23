@@ -8,6 +8,11 @@ var aimLayerMask : LayerMask;
 var force : float = 100;
 var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
+var grenade : GameObject;
+var grenadeThrowPower : float = 100;
+var MuzzleFlash : GameObject;
+private var audio: AudioSource = GetComponent.<AudioSource>();
+public var gunshot1 : AudioClip;
 public var playerHealth : int = 500;
 private var originalHeight : float;
 private var hit : RaycastHit;
@@ -18,6 +23,7 @@ private var lookTarget : Vector3;
 
 function Start () {
 originalHeight = transform.position.y;
+
 }
 
 public function ApplyDamage (damage : float) {
@@ -56,15 +62,27 @@ if(Input.GetKey(KeyCode.D)){
   if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards lookTarget
   lookTarget.y = originalHeight;
  transform.LookAt(lookTarget);
+ var distanceToMouse = Vector3.Distance(transform.position, lookTarget);
  
    var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
-  
+   
+ if (Input.GetButtonDown("Fire2")){
+
+var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotation);
+ var grenaderb = grenadeObject.GetComponent(Rigidbody);
+
+ grenaderb.AddForce(grenadeObject.transform.forward * grenadeThrowPower * distanceToMouse);
+ grenaderb.AddForce(grenadeObject.transform.up * 10);
+ }
   
  if(Input.GetButton("Fire1"))
         {
         if (x>=fireRate){
         x = 0.0f;
- 		
+        var audio: AudioSource = GetComponent.<AudioSource>();
+ 		audio.clip = gunshot1;
+ 		audio.Play();
+ 		Instantiate(MuzzleFlash, barrel.position, barrel.transform.rotation);
        var newLineObject = Instantiate(linePrefab, barrel.position, barrel.transform.rotation);
        var newLine = newLineObject.GetComponent(LineRenderer);
        
