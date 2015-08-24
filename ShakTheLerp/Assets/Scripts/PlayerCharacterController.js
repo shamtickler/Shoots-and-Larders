@@ -10,6 +10,8 @@ var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
 var grenade : GameObject;
 var grenadeThrowPower : float = 6;
+public var playerLevel : int = 1;
+public var playerGold : int = 10;
 public var gunshot1 : AudioClip;
 public var playerHealth : int = 500;
 private var originalHeight : float;
@@ -27,8 +29,13 @@ public function ApplyDamage (damage : float) {
 playerHealth = playerHealth - damage;
 }
 
+public function getGold (gold : int){
+playerGold += gold;
+}
+
 function Update () {
-Debug.Log("Player Health = " + playerHealth);
+aimCharacter(); 	//Aims the character in the direction of the mouse
+
   if(Input.GetKey(KeyCode.A)){
              this.transform.Translate(Vector3.left * movementSpeed * Time.deltaTime, Space.World);
   }
@@ -52,39 +59,29 @@ if(Input.GetKey(KeyCode.D)){
   }
   
   
-  var ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
   
-  if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards lookTarget
-  lookTarget.y = originalHeight;
- transform.LookAt(lookTarget);
- var distanceToMouse = Vector3.Distance(transform.position, lookTarget);
  
-   var lineRenderer : LineRenderer = GetComponent.<LineRenderer>();
+ 
+ 
   
-  if (Input.GetButtonDown("Fire2")){
-
-var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotation);
- var grenaderb = grenadeObject.GetComponent(Rigidbody);
-
- grenaderb.AddForce(grenadeObject.transform.forward * grenadeThrowPower * distanceToMouse);
- grenaderb.AddForce(grenadeObject.transform.up * 10);
- }
+if (Input.GetButtonDown("Fire2")){
+	throwGrenade();
+}
   
- if(Input.GetButton("Fire1"))
-        {
-          ShootWeapon();   
-     }
+if(Input.GetButton("Fire1")){
+	ShootWeapon();   
+}
        
   
 
-if (x <= fireRate){x = (x + Time.deltaTime);}
+x += Time.deltaTime;
 
 }
 
 function ShootWeapon(){
    
-   if (x>=fireRate){
-        x = 0.0f;
+if (x>=fireRate){
+	x = 0.0f;
  		
  		var audio: AudioSource = GetComponent.<AudioSource>(); //audio gunshot sounds
  		audio.clip = gunshot1;
@@ -124,5 +121,22 @@ function ShootWeapon(){
 
 
 }
+
+function aimCharacter(){
+var ray = Camera.main.ScreenPointToRay (Input.mousePosition); 					//creats a ray pointing from the mouse position in screen space
+if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards the hit point of said ray
+lookTarget.y = originalHeight;
+transform.LookAt(lookTarget);
+}
+
+function throwGrenade(){
+var grenadeObject = Instantiate(grenade, barrel.position, barrel.transform.rotation);		//Spawns the grenade prefab
+var grenaderb = grenadeObject.GetComponent(Rigidbody);										//Gets the required variables to add force
+var distanceToMouse = Vector3.Distance(transform.position, lookTarget);						//and calculate said force
+
+grenaderb.AddForce(grenadeObject.transform.forward * grenadeThrowPower * distanceToMouse); 	//Adds force to grenade forwards in relation to the 
+grenaderb.AddForce(grenadeObject.transform.up * 10);										//position of the mouse
+}
+
 
 

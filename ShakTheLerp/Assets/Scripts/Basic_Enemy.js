@@ -6,12 +6,11 @@ private var player : GameObject;
 private var distanceToPlayer : float;
 private var timeSinceLastAttack : float;
 public var attackSpeed : float = 2;
+public var goldValue : int = 150;
 
 
 public function ApplyDamage (damage : float) {
 health = health - damage;
-
-
 }
 
 function Update () {
@@ -30,6 +29,7 @@ if (distanceToPlayer < 2.5 && timeSinceLastAttack >= attackSpeed){
 
 if (health <= 0)
 {
+player.GetComponent(PlayerCharacterController).getGold(goldValue);
 Destroy(gameObject);
 }
 

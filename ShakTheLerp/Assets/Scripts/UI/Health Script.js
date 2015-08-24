@@ -1,7 +1,7 @@
 ﻿#pragma strict
 import UnityEngine.UI;
 
-var health: int;
+private var health: int;
 var healthNumber : Text;
 var healthSlider : Slider;
 

@@ -8,7 +8,7 @@
      //private var t:float = 0.0f;
      
      private function zoomOut():void{
-     	if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (cameraOffset <= 30))
+     	if ((Input.GetAxis("Mouse ScrollWheel") < 0) && (cameraOffset <= 20))
      		{
      		this.transform.Translate((Vector3.up * Mathf.Pow(this.speed,1.3f) * Time.deltaTime), Space.World);
      		cameraOffset = this.transform.position.y;
@@ -17,7 +17,7 @@
      }
      
      private function zoomIn():void{
-     	if ((Input.GetAxis("Mouse ScrollWheel") > 0) && (cameraOffset >= 5))
+     	if ((Input.GetAxis("Mouse ScrollWheel") > 0) && (cameraOffset >= 10))
      		{
      		this.transform.Translate((Vector3.down * Mathf.Pow(this.speed,1.3f) * Time.deltaTime), Space.World);
      		cameraOffset = this.transform.position.y;

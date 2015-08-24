@@ -1,14 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\Health Script.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Basic_Enemy.js">
     <Files>
-      <File FileName="Assets\Scripts\UI\Health Script.js" Line="12" Column="32" />
-      <File FileName="Assets\Scripts\EnemySpawner.js" Line="14" Column="85" />
-      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="107" Column="40" />
+      <File FileName="Assets\Scripts\CameraControllerV3.js" Line="20" Column="74" />
+      <File FileName="Assets\Scripts\EnemySpawner.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Grenade_Basic.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LineRenderer_Tracer.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraControllerV3.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DestroyAfterSeconds.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="9" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

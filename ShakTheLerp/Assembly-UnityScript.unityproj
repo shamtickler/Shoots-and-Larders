@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GoldScript.js" />
      <Compile Include="Assets\Scripts\Basic_Enemy.js" />
      <Compile Include="Assets\Scripts\CameraControllerV3.js" />
      <Compile Include="Assets\Scripts\DestroyAfterSeconds.js" />
