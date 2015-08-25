@@ -1,4 +1,5 @@
 ﻿#pragma strict
+import UnityEngine.UI;
 
 public var health: float = 100f;
 public var damage: float = 5f;
@@ -7,10 +8,18 @@ private var distanceToPlayer : float;
 private var timeSinceLastAttack : float;
 public var attackSpeed : float = 2;
 public var goldValue : int = 150;
-
+var slider : Slider;
+var canvas : Canvas;
 
 public function ApplyDamage (damage : float) {
 health = health - damage;
+if (canvas.enabled == false){canvas.enabled = true;}
+
+
+}
+
+function Start(){
+slider.maxValue = health;
 }
 
 function Update () {
@@ -32,5 +41,5 @@ if (health <= 0)
 player.GetComponent(PlayerCharacterController).getGold(goldValue);
 Destroy(gameObject);
 }
-
+slider.value = health;
 }

@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{8F72D0D4-2C85-CA92-FE89-894C37443BDF}</ProjectGuid>
+	<ProjectGuid>{9EACC649-51B0-A05F-4366-44E336F55206}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,19 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Basic_Enemy.js" />
-     <Compile Include="Assets\Scripts\CameraControllerV3.js" />
-     <Compile Include="Assets\Scripts\DestroyAfterSeconds.js" />
-     <Compile Include="Assets\Scripts\EnemySpawner.js" />
-     <Compile Include="Assets\Scripts\Grenade_Basic.js" />
-     <Compile Include="Assets\Scripts\LineRenderer_Tracer.js" />
-     <Compile Include="Assets\Scripts\MuzzleFlash.js" />
-     <Compile Include="Assets\Scripts\PlayerCharacterController.js" />
-     <Compile Include="Assets\Scripts\Turret_ControllV3.js" />
-     <Compile Include="Assets\Scripts\UI\EnemyHealthScript.js" />
-     <Compile Include="Assets\Scripts\UI\GoldScript.js" />
-     <Compile Include="Assets\Scripts\UI\Health Script.js" />
-     <Compile Include="Assets\Scripts\projectile_Controller.js" />
+     <Compile Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshContourShader.shader" />

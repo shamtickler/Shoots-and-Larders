@@ -10,15 +10,17 @@ var spreadFactor : float = 0.2;
 var jumpHeight : float = 10;
 var grenade : GameObject;
 var grenadeThrowPower : float = 6;
+var linePrefab : GameObject; 
 public var playerLevel : int = 1;
 public var playerGold : int = 10;
 public var gunshot1 : AudioClip;
 public var playerHealth : int = 500;
 private var originalHeight : float;
 private var hit : RaycastHit;
-var linePrefab : GameObject; 
+
 private var x : float =0;
 private var lookTarget : Vector3;
+
 
 
 function Start () {
@@ -33,26 +35,38 @@ public function getGold (gold : int){
 playerGold += gold;
 }
 
+function grounded (){
+var groundRay = new Ray(transform.position, -Vector3.up);
+  if (Physics.Raycast(groundRay, hit, 1)){
+  	if (Input.GetKey(KeyCode.Space)){
+  			
+  		}
+  	}
+}
+
 function Update () {
 aimCharacter(); 	//Aims the character in the direction of the mouse
 
+ 
+
   if(Input.GetKey(KeyCode.A)){
-             this.transform.Translate(Vector3.left * movementSpeed * Time.deltaTime, Space.World);
+             transform.Translate(Vector3.left * movementSpeed * Time.deltaTime, Space.World);
   }
 if(Input.GetKey(KeyCode.D)){
-             this.transform.Translate(Vector3.right * movementSpeed * Time.deltaTime, Space.World);
+             transform.Translate(Vector3.right * movementSpeed * Time.deltaTime, Space.World);
   }
   if(Input.GetKey(KeyCode.W)){
-             this.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
+             transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
   }
   if(Input.GetKey(KeyCode.S)){
-             this.transform.Translate(Vector3.back * movementSpeed * Time.deltaTime, Space.World);
+             transform.Translate(Vector3.back * movementSpeed * Time.deltaTime, Space.World);
   }
   
   
   
   if (Input.GetKey(KeyCode.Space)){
-  if (transform.position.y < originalHeight + .1){
+  var jumpRay = new Ray(transform.position, -Vector3.up);
+  if (Physics.Raycast(jumpRay, hit, 1)){
   var rb : Rigidbody = GetComponent.<Rigidbody>();
   rb.velocity = (transform.up * jumpHeight);
   	}
@@ -124,8 +138,10 @@ if (x>=fireRate){
 
 function aimCharacter(){
 var ray = Camera.main.ScreenPointToRay (Input.mousePosition); 					//creats a ray pointing from the mouse position in screen space
-if (Physics.Raycast (ray, hit, 90000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards the hit point of said ray
-lookTarget.y = originalHeight;
+if (Physics.Raycast (ray, hit, 1000,aimLayerMask)) { lookTarget = hit.point; } //find and look towards the hit point of said ray
+lookTarget.y += originalHeight;
+barrel.transform.LookAt(lookTarget);
+lookTarget.y = transform.position.y;
 transform.LookAt(lookTarget);
 }
 
