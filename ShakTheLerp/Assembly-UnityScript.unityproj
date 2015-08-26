@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\DestroyAfterSeconds.js" />
      <Compile Include="Assets\Scripts\EnemySpawner.js" />
      <Compile Include="Assets\Scripts\Grenade_Basic.js" />
+     <Compile Include="Assets\Scripts\GunScript.js" />
      <Compile Include="Assets\Scripts\LineRenderer_Tracer.js" />
      <Compile Include="Assets\Scripts\MuzzleFlash.js" />
      <Compile Include="Assets\Scripts\PlayerCharacterController.js" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Scripts\UI\Health Script.js" />
      <Compile Include="Assets\Scripts\projectile_Controller.js" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectSphereShader.shader" />
+     <None Include="Assets\PorglezompPyroclastics\Explosion.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\VisualSensorLineShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshContourShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\WaypointShader.shader" />
@@ -68,6 +70,7 @@
      <None Include="Assets\RAIN\ReleaseNotes.txt" />
      <None Include="Assets\RAIN\Editor\Shaders\AspectRingShader.shader" />
      <None Include="Assets\RAIN\Editor\Shaders\NavMeshColliderShader.shader" />
+     <None Include="Assets\PorglezompPyroclastics\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
