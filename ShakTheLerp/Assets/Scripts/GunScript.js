@@ -10,34 +10,69 @@ private var player : GameObject;
 private var x : float =0;
 public var gunshot1 : AudioClip;
 private var hit : RaycastHit;
-public var equipped : boolean;
+private var isEquipped : boolean = false;
 var linePrefab : GameObject;
+var statCanvas : Canvas;
+var layerMask : LayerMask;
+private var deathTimer : float = 30;
 
+var dmgTxt : Text;
+var frTxt : Text;
+var accTxt : Text;
+var projTxt : Text;
 
-public function randomizeStats (){
-range = Random.Range(40,100);
-fireRate = Random.Range(1,0.1);
-damage = Random.Range(10,101);
-projectiles = Random.Range(1,5);
-spreadFactor = Random.Range(30,1);
+public function randomizeStats (multiplier : int){
+range = Random.Range(40+multiplier,100+multiplier);
+fireRate = Random.Range(1/multiplier,0.1/multiplier);
+damage = Random.Range(10*multiplier,20*multiplier);
+projectiles = Random.Range(1*multiplier,2*multiplier);
+spreadFactor = Random.Range(30,0);
+if (projectiles < 1){projectiles = 1;}
+}
 
+function OnMouseOver(){
+	if (isEquipped == false){
+	statCanvas.enabled = true;
+	dmgTxt.text = damage.ToString();
+	frTxt.text = fireRate.ToString();
+	accTxt.text = spreadFactor.ToString();
+	projTxt.text = projectiles.ToString();
+	}
+}
+
+function OnMouseExit(){
+	statCanvas.enabled = false;
 }
 
 public function equip () {
-equipped = true;
-var rb : Rigidbody = GameObject.GetComponent.<Rigidbody>();
-//rb.Sleep = true;
+isEquipped = true;
+}
+
+public function unequip(){
+isEquipped = false;
+Destroy(gameObject);
+player = GameObject.FindGameObjectWithTag("Player");
+player.GetComponent(PlayerCharacterController).unequip1();
+
 }
 
 function Update () {
 if(Input.GetButton("Fire1")){
+	if (isEquipped == true){
 	ShootWeapon();   
+	}
 }
+
+
+
+
 x += Time.deltaTime;
 
 
-
-
+if (isEquipped==false){
+deathTimer -= Time.deltaTime;
+	if (deathTimer < 0){Destroy(gameObject);}
+}
 }
 
 function ShootWeapon(){
@@ -63,7 +98,7 @@ if (x>=fireRate){
 	       direction.x += Random.Range(-spreadFactor/100, spreadFactor/100);
 	       direction.z += Random.Range(-spreadFactor/100, spreadFactor/100);
 	        var shootRay = new Ray(barrel.transform.position, direction);
-	        if(Physics.Raycast(shootRay, hit, range)){
+	        if(Physics.Raycast(shootRay, hit, range, layerMask)){
 	        	
 	        	if(hit.collider.gameObject.tag == "Enemy"){
 	        		var hitRigidBody : Rigidbody = hit.collider.gameObject.GetComponent.<Rigidbody>();
