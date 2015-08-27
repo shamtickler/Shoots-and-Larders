@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\ItemSlot.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemySpawner.js">
     <Files>
-      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="48" Column="31" />
-      <File FileName="Assets\Scripts\UI\ItemSlot.js" Line="9" Column="1" />
+      <File FileName="Assets\Scripts\GunScript.js" Line="29" Column="43" />
+      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="18" Column="8" />
+      <File FileName="Assets\Scripts\UI\ItemSlot.js" Line="61" Column="1" />
       <File FileName="Assets\Scripts\UI\EnemyHealthScript.js" Line="10" Column="46" />
       <File FileName="Assets\Scripts\CameraControllerV3.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnemySpawner.js" Line="8" Column="35" />
-      <File FileName="Assets\Scripts\Grenade_Basic.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="54" Column="49" />
-      <File FileName="Assets\Scripts\GunScript.js" Line="17" Column="36" />
-      <File FileName="Assets\Scripts\UI\Health Script.js" Line="2" Column="1" />
+      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="40" Column="31" />
+      <File FileName="Assets\Scripts\UI\Health Script.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MuzzleFlash.js" Line="9" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

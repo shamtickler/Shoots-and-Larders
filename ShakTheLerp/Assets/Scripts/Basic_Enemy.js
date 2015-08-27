@@ -11,6 +11,7 @@ public var goldValue : int = 150;
 var lootWeapon1 : GameObject;
 var slider : Slider;
 var canvas : Canvas;
+private var myLevel : float;
 
 public function ApplyDamage (damage : float) {
 health = health - damage;
@@ -39,7 +40,7 @@ if (health <= 0){
 	if (Random.Range(100, 0) > 95){
 	var droppedWeapon : GameObject;
 	droppedWeapon = Instantiate(lootWeapon1, transform.position, Quaternion.identity);
-	droppedWeapon.GetComponent(GunScript).randomizeStats(1);
+	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
 	}
 
 player.GetComponent(PlayerCharacterController).getGold(goldValue);
@@ -54,4 +55,5 @@ damage = 200 * multiplier;
 attackSpeed = 2 - Mathf.Clamp(multiplier, 0,1.5);
 goldValue = 350*multiplier;
 slider.maxValue = health;
+myLevel = multiplier;
 }

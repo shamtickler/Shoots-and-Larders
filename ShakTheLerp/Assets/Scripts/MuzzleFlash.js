@@ -6,5 +6,5 @@ function Start () {
 
 function Update () {
 timeAlive += Time.deltaTime;
-if (timeAlive >= 0.25){Destroy(gameObject);}
+if (timeAlive >= 0.05){Destroy(gameObject);}
 }

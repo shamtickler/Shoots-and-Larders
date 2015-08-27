@@ -15,7 +15,7 @@ var jumpHeight : float = 10;
 var grenade : GameObject;
 var grenadeThrowPower : float = 6;
 var linePrefab : GameObject; 
-var weapon1 : GameObject;
+public var weapon1 : GameObject;
 public var playerLevel : int = 1;
 public var playerGold : int = 10;
 public var gunshot1 : AudioClip;

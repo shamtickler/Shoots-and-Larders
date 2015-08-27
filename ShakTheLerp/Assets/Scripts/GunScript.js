@@ -14,6 +14,7 @@ private var isEquipped : boolean = false;
 var linePrefab : GameObject;
 var statCanvas : Canvas;
 var layerMask : LayerMask;
+var panelBackground : Image;
 private var deathTimer : float = 30;
 
 var dmgTxt : Text;
@@ -21,13 +22,17 @@ var frTxt : Text;
 var accTxt : Text;
 var projTxt : Text;
 
-public function randomizeStats (multiplier : int){
-range = Random.Range(40+multiplier,100+multiplier);
-fireRate = Random.Range(1/multiplier,0.1/multiplier);
-damage = Random.Range(10*multiplier,20*multiplier);
-projectiles = Random.Range(1*multiplier,2*multiplier);
-spreadFactor = Random.Range(30,0);
+public function randomizeStats (multiplier : float){
+range = Random.Range(20.0+(50.0*multiplier),30.0+(80.0*multiplier));
+fireRate = Random.Range(1.0,.05);
+damage = Random.Range(300.0*multiplier,500.0*multiplier);
+projectiles = Random.Range(1*multiplier,30*multiplier);
+spreadFactor = Random.Range(30.0,0);
 if (projectiles < 1){projectiles = 1;}
+}
+
+function Start(){
+player = GameObject.FindGameObjectWithTag("Player");
 }
 
 function OnMouseOver(){
@@ -37,6 +42,14 @@ function OnMouseOver(){
 	frTxt.text = fireRate.ToString();
 	accTxt.text = spreadFactor.ToString();
 	projTxt.text = projectiles.ToString();
+	var equippedWeapon : GameObject = player.GetComponent(PlayerCharacterController).weapon1;
+	var dmg : float = equippedWeapon.GetComponent(GunScript).damage;
+	var fr : float = equippedWeapon.GetComponent(GunScript).fireRate;
+	var proj : int = equippedWeapon.GetComponent(GunScript).projectiles;
+	if (((damage*projectiles)/fireRate)>((dmg*proj)/fr)){
+	//var img : Image = panelBackground.GetComponent<Image>();
+		panelBackground.color = new Color(95.0/255.0,245.0/255.0,160.0/255.0, 100.0/255.0);
+	 }
 	}
 }
 
@@ -85,7 +98,7 @@ if (x>=fireRate){
 	 		
 	var audio: AudioSource = GetComponent.<AudioSource>(); //audio gunshot sounds
 	audio.clip = gunshot1;
-	audio.Play();      
+	audio.Play();   
        
        for(var i : int =0 ; i < projectiles; i++)
        {
