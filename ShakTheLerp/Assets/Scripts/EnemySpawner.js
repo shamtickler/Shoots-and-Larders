@@ -1,6 +1,6 @@
 ﻿#pragma strict
 var enemy : GameObject;
-var spawnFrequency : float = 1;
+var spawnFrequency : float = 0.5;
 var maxEnemies : int = 25;
 public var enemyLevel : float =0.025;
 private var spawnTimer : float =0;

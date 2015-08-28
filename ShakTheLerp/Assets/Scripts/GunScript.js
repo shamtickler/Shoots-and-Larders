@@ -23,9 +23,9 @@ var accTxt : Text;
 var projTxt : Text;
 
 public function randomizeStats (multiplier : float){
-range = Random.Range(20.0+(50.0*multiplier),30.0+(80.0*multiplier));
-fireRate = Random.Range(1.0,.05);
-damage = Random.Range(300.0*multiplier,500.0*multiplier);
+range = Random.Range(30,60));
+fireRate = Random.Range(1.0,0.1);
+damage = Random.Range(300.0*multiplier,400.0*multiplier);
 projectiles = Random.Range(1*multiplier,30*multiplier);
 spreadFactor = Random.Range(30.0,0);
 if (projectiles < 1){projectiles = 1;}
