@@ -1,4 +1,5 @@
 ﻿#pragma strict
+
 public var range : float = 60;
 public var fireRate : float = 1;
 public var damage : float = 20;
@@ -15,7 +16,10 @@ var linePrefab : GameObject;
 var statCanvas : Canvas;
 var layerMask : LayerMask;
 var panelBackground : Image;
-private var deathTimer : float = 30;
+var ispistol : boolean;
+var ismachinegun : boolean;
+var isshotgun : boolean;
+private var deathTimer : float = 60;
 
 var dmgTxt : Text;
 var frTxt : Text;
@@ -23,14 +27,29 @@ var accTxt : Text;
 var projTxt : Text;
 
 public function randomizeStats (multiplier : float){
-range = Random.Range(30,60));
-fireRate = Random.Range(1.0,0.1);
-damage = Random.Range(300.0*multiplier,400.0*multiplier);
-projectiles = Random.Range(1*multiplier,30*multiplier);
-spreadFactor = Random.Range(30.0,0);
-if (projectiles < 1){projectiles = 1;}
-}
 
+if (ispistol == true){
+range = Random.Range(40,60);
+fireRate = Random.Range(0.4,0.3);
+damage = Random.Range(40.0*multiplier,60.0*multiplier);
+projectiles = 1.0;
+spreadFactor = Random.Range(5.0,0);
+
+}else if (ismachinegun == true){
+range = Random.Range(40,60);
+fireRate = Random.Range(0.3,0.05);
+damage = Random.Range(35.0*multiplier,45.0*multiplier);
+projectiles = 1.0;
+spreadFactor = Random.Range(16.0,0);
+
+}else if (isshotgun == true){
+range = Random.Range(30,40);
+fireRate = Random.Range(1.0,0.6);
+damage = Random.Range(5.0*multiplier,7.0*multiplier);
+projectiles = Random.Range(8,12);
+spreadFactor = Random.Range(40,20);
+ }
+}
 function Start(){
 player = GameObject.FindGameObjectWithTag("Player");
 }
@@ -38,8 +57,10 @@ player = GameObject.FindGameObjectWithTag("Player");
 function OnMouseOver(){
 	if (isEquipped == false){
 	statCanvas.enabled = true;
+	var displayATKSpeed : float;
+	displayATKSpeed = (1.0/fireRate);
 	dmgTxt.text = damage.ToString();
-	frTxt.text = fireRate.ToString();
+	frTxt.text = displayATKSpeed.ToString();
 	accTxt.text = spreadFactor.ToString();
 	projTxt.text = projectiles.ToString();
 	var equippedWeapon : GameObject = player.GetComponent(PlayerCharacterController).weapon1;
@@ -49,7 +70,7 @@ function OnMouseOver(){
 	if (((damage*projectiles)/fireRate)>((dmg*proj)/fr)){
 	//var img : Image = panelBackground.GetComponent<Image>();
 		panelBackground.color = new Color(95.0/255.0,245.0/255.0,160.0/255.0, 100.0/255.0);
-	 }
+	 }else{panelBackground.color = new Color(245.0/255.0,160.0/255.0,95.0/255.0, 100.0/255.0);}
 	}
 }
 
@@ -59,6 +80,8 @@ function OnMouseExit(){
 
 public function equip () {
 isEquipped = true;
+var thisCol : Collider = gameObject.GetComponent.<Collider>();
+thisCol.enabled = false;
 }
 
 public function unequip(){
@@ -75,8 +98,6 @@ if(Input.GetButton("Fire1")){
 	ShootWeapon();   
 	}
 }
-
-
 
 
 x += Time.deltaTime;
@@ -120,7 +141,7 @@ if (x>=fireRate){
 	       			EnemyScript = hit.collider.gameObject;
 	        		EnemyScript.GetComponent(Basic_Enemy).ApplyDamage(damage); //Applies damage to the enemy
 	        		
-	        		
+	              		
 	        	
 	        		newLine.SetPosition(0, barrel.transform.position); //Creates the line renderer to visualize the bullet
 	        		newLine.SetPosition(1, hit.point);

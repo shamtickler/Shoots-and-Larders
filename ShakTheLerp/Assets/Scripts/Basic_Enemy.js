@@ -9,6 +9,8 @@ private var timeSinceLastAttack : float;
 public var attackSpeed : float = 2;
 public var goldValue : int = 150;
 var lootWeapon1 : GameObject;
+var lootWeapon2 : GameObject;
+var lootWeapon3 : GameObject;
 var slider : Slider;
 var canvas : Canvas;
 private var myLevel : float;
@@ -37,9 +39,16 @@ if (distanceToPlayer < 2.0 && timeSinceLastAttack >= attackSpeed){
 
 
 if (health <= 0){
-	if (Random.Range(100, 0) > 95){
+var rndnum : float = Random.Range(100, 0);
+	if (rndnum > 95){
 	var droppedWeapon : GameObject;
 	droppedWeapon = Instantiate(lootWeapon1, transform.position, Quaternion.identity);
+	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
+	}else if(rndnum>90 && rndnum<95){
+	droppedWeapon = Instantiate(lootWeapon2, transform.position, Quaternion.identity);
+	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
+	}else if(rndnum>85 && rndnum<90){
+	droppedWeapon = Instantiate(lootWeapon3, transform.position, Quaternion.identity);
 	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
 	}
 
@@ -50,10 +59,10 @@ slider.value = health;
 }
 
 public function SetEnemyStats(multiplier : float){
-health = 2500 * multiplier;
-damage = 200 * multiplier;
-attackSpeed = 2 - Mathf.Clamp(multiplier, 0,1.5);
-goldValue = 350*multiplier;
+health = 75 * multiplier;
+damage = 5 * multiplier;
+attackSpeed = 2 - Mathf.Clamp((multiplier/20), 0,1.5);
+goldValue = 5*multiplier;
 slider.maxValue = health;
 myLevel = multiplier;
 }

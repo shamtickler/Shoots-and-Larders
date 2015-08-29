@@ -1,4 +1,5 @@
 ﻿#pragma strict
+import UnityEngine.UI;
 
 public var mouseEnter : Texture;
 public var mouseExit : Texture;
@@ -46,8 +47,11 @@ statPanel.enabled = true;
 function Update(){
 if (showStats == true){
 EquippedWeapon = player.GetComponent(PlayerCharacterController).weapon1;
+
+var displayATKSpeed : float;
+displayATKSpeed = (1/(EquippedWeapon.GetComponent(GunScript).fireRate));
 damage.text = EquippedWeapon.GetComponent(GunScript).damage.ToString();
-fireRate.text = EquippedWeapon.GetComponent(GunScript).fireRate.ToString();
+fireRate.text = displayATKSpeed.ToString();
 accuracy.text = EquippedWeapon.GetComponent(GunScript).spreadFactor.ToString();
 projectiles.text = EquippedWeapon.GetComponent(GunScript).projectiles.ToString();
  }
