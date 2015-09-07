@@ -59,10 +59,10 @@ slider.value = health;
 }
 
 public function SetEnemyStats(multiplier : float){
-health = 75 * multiplier;
-damage = 5 * multiplier;
+health = 75 * (multiplier*multiplier);
+damage = 15 * multiplier;
 attackSpeed = 2 - Mathf.Clamp((multiplier/20), 0,1.5);
-goldValue = 5*multiplier;
+goldValue = 2*multiplier;
 slider.maxValue = health;
 myLevel = multiplier;
 }

@@ -17,7 +17,7 @@ var grenadeThrowPower : float = 6;
 var linePrefab : GameObject; 
 public var weapon1 : GameObject;
 public var playerLevel : int = 1;
-public var playerGold : int = 10;
+public var playerGold : int;
 public var gunshot1 : AudioClip;
 public var playerHealth : int = 500;
 private var originalHeight : float;
@@ -30,6 +30,7 @@ var canvas : Canvas;
 
 
 function Start () {
+playerGold = PlayerPrefs.GetInt("PlayerGold");
 originalHeight = transform.position.y;
 item1equipped = true;
 instanceOfWeapon1 = Instantiate(weapon1, barrel.position, barrel.rotation);
@@ -63,12 +64,15 @@ playerHealth = playerHealth - damage;
 
 public function getGold (gold : int){
 playerGold += gold;
+PlayerPrefs.SetInt("PlayerGold", playerGold);
 }
 
 
 function Update () {
 aimCharacter(); 	//Aims the character in the direction of the mouse
-
+if (playerHealth <= 0){
+Application.LoadLevel("Shop");
+}
 
 
  if(Input.GetKeyDown(KeyCode.Q)){
@@ -96,16 +100,11 @@ if(Input.GetKey(KeyCode.D)){
   
   
 
-  
-if (Input.GetButtonDown("Fire2")){
-	throwGrenade();
-}
-
 if (item1equipped == false && Input.GetButtonDown("Fire1")){
 var ray2 = Camera.main.ScreenPointToRay (Input.mousePosition);
 if (Physics.Raycast (ray2, hit)){
 	if (hit.collider.gameObject.tag == "Items"){
-		if (Vector3.Distance(hit.collider.gameObject.transform.position, transform.position) < 2){
+		if (Vector3.Distance(hit.collider.gameObject.transform.position, transform.position) < 4){
 			equip1(hit.collider.gameObject);
 	}		
   }

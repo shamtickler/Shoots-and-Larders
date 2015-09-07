@@ -9,6 +9,8 @@ private var xEnemies : int = 5;
 private var alreadySpawnedEnemies : int;
 public var enemyWave : int = 1;
 private var waveSpawnEnabled : boolean = true;
+public var zoneWidth : float;
+public var zoneHeight : float;
 
 function Start () {
 
@@ -26,9 +28,6 @@ alreadySpawnedEnemies = 0;
 waveSpawnEnabled = true;
 }
 
-Debug.Log(enemyWave);
-
-
 spawnTimer += Time.deltaTime;
 }
 
@@ -37,12 +36,11 @@ spawnTimer += Time.deltaTime;
 function waveControl(){
 if ((spawnFrequency <= spawnTimer) && (maxEnemies > enemiesAlive)){
 	if (waveSpawnEnabled == true){
-	var position: Vector3 = Vector3(Random.Range(-25.0, 25.0), 1, Random.Range(-25.0, 25.0));
+	var position: Vector3 = Vector3(Random.Range(-zoneWidth, zoneWidth), 1, Random.Range(-zoneHeight, zoneHeight));
 	var spawnedEnemy : GameObject;
 	spawnedEnemy = Instantiate(enemy, position, Quaternion.identity);
 	spawnTimer = 0.0f;
 	spawnedEnemy.GetComponent(Basic_Enemy).SetEnemyStats(enemyWave);
-	Debug.Log(enemyWave);
 	alreadySpawnedEnemies += 1;
 	if (alreadySpawnedEnemies >= xEnemies){waveSpawnEnabled = false;}
   }

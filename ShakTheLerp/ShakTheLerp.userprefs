@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GunScript.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Basic_Enemy.js">
     <Files>
-      <File FileName="Assets\Scripts\CameraControllerV3.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GunScript.js" Line="2" Column="1" />
-      <File FileName="Assets\Scripts\EnemySpawner.js" Line="38" Column="68" />
-      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="133" Column="81" />
-      <File FileName="Assets\Scripts\UI\ItemSlot.js" Line="2" Column="23" />
-      <File FileName="Assets\Scripts\UI\EnemyHealthScript.js" Line="2" Column="23" />
-      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="48" Column="84" />
-      <File FileName="Assets\Scripts\UI\Health Script.js" Line="2" Column="1" />
-      <File FileName="Assets\Scripts\UI\WaveNumber.js" Line="10" Column="38" />
+      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="62" Column="12" />
+      <File FileName="Assets\Scripts\UI\ItemSlot.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="33" Column="27" />
+      <File FileName="Assets\Scripts\EnemySpawner.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GunScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\GoldScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\MouseHoverIcon.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\ShopUI.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

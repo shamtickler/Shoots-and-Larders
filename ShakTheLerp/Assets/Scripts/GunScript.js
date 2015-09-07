@@ -37,15 +37,15 @@ spreadFactor = Random.Range(5.0,0);
 
 }else if (ismachinegun == true){
 range = Random.Range(40,60);
-fireRate = Random.Range(0.3,0.05);
-damage = Random.Range(35.0*multiplier,45.0*multiplier);
+fireRate = Random.Range(0.3,0.08);
+damage = Random.Range(32.0*multiplier,42.0*multiplier);
 projectiles = 1.0;
 spreadFactor = Random.Range(16.0,0);
 
 }else if (isshotgun == true){
 range = Random.Range(30,40);
 fireRate = Random.Range(1.0,0.6);
-damage = Random.Range(5.0*multiplier,7.0*multiplier);
+damage = Random.Range(6.0*multiplier,8.0*multiplier);
 projectiles = Random.Range(8,12);
 spreadFactor = Random.Range(40,20);
  }
@@ -70,7 +70,7 @@ function OnMouseOver(){
 	if (((damage*projectiles)/fireRate)>((dmg*proj)/fr)){
 	//var img : Image = panelBackground.GetComponent<Image>();
 		panelBackground.color = new Color(95.0/255.0,245.0/255.0,160.0/255.0, 100.0/255.0);
-	 }else{panelBackground.color = new Color(245.0/255.0,160.0/255.0,95.0/255.0, 100.0/255.0);}
+	 }else{panelBackground.color = new Color(245.0/255.0,75.0/255.0,95.0/255.0, 75.0/255.0);}
 	}
 }
 
