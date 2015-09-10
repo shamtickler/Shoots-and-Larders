@@ -27,6 +27,7 @@ var accTxt : Text;
 var projTxt : Text;
 
 public function randomizeStats (multiplier : float){
+//multiplier = multiplier * PlayerPrefs.GetFloat("DamageMultiplier");
 
 if (ispistol == true){
 range = Random.Range(40,60);
@@ -49,6 +50,7 @@ damage = Random.Range(6.0*multiplier,8.0*multiplier);
 projectiles = Random.Range(8,12);
 spreadFactor = Random.Range(40,20);
  }
+damage = damage * PlayerPrefs.GetFloat("DamageMultiplier");
 }
 function Start(){
 player = GameObject.FindGameObjectWithTag("Player");

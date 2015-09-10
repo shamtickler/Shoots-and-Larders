@@ -1,4 +1,5 @@
 ﻿#pragma strict
+public var dmgMultiCost : int;
 private var gold : int;
 var goldText : Text;
 var infoCanvasLeft : Canvas;
@@ -11,6 +12,10 @@ gold = PlayerPrefs.GetInt("PlayerGold");
 goldText.text = gold.ToString();
 infoCanvasLeft.transform.position = Input.mousePosition;
 infoCanvasRight.transform.position = Input.mousePosition;
+
+
+
+
 }
 
 
@@ -37,6 +42,16 @@ infoCanvasLeft.enabled = true;
 }
 public function ResetSaveFile(){
 PlayerPrefs.DeleteAll();
+PlayerPrefs.SetFloat("DamageMultiplier" , 1.0);
+PlayerPrefs.SetInt("PlayerGold",5000);
 }
 
+public function BuyDamageMultiplier(){
+dmgMultiCost = (PlayerPrefs.GetFloat("DamageMultiplier")*100);
+if (gold >= dmgMultiCost){
 
+var currentdmgMulti : float = PlayerPrefs.GetFloat("DamageMultiplier");
+PlayerPrefs.SetFloat("DamageMultiplier",(currentdmgMulti + 0.1));
+PlayerPrefs.SetInt("PlayerGold", (gold - dmgMultiCost));
+}
+}

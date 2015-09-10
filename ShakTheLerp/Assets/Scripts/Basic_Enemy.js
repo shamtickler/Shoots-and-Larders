@@ -27,7 +27,6 @@ slider.maxValue = health;
 function Update () {
 timeSinceLastAttack += Time.deltaTime;
 
-
 player = GameObject.FindGameObjectWithTag("Player"); //find the player
 distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 if (distanceToPlayer < 2.0 && timeSinceLastAttack >= attackSpeed){
