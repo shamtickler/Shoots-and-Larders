@@ -19,7 +19,7 @@ public var weapon1 : GameObject;
 public var playerLevel : int = 1;
 public var playerGold : int;
 public var gunshot1 : AudioClip;
-public var playerHealth : int = 500;
+private var playerHealth : int;
 private var originalHeight : float;
 private var hit : RaycastHit;
 private var instanceOfWeapon1 : GameObject;
@@ -30,13 +30,14 @@ var canvas : Canvas;
 
 
 function Start () {
-playerGold = PlayerPrefs.GetInt("PlayerGold");
+playerGold = PlayerPrefs.GetFloat("PlayerGold");
 originalHeight = transform.position.y;
 item1equipped = true;
 instanceOfWeapon1 = Instantiate(weapon1, barrel.position, barrel.rotation);
 instanceOfWeapon1.transform.parent = barrel.transform;
 weapon1 = instanceOfWeapon1;
 weapon1.GetComponent(GunScript).equip();
+PlayerPrefs.SetFloat("PlayerHealth",PlayerPrefs.GetFloat("PlayerMaxHealth"));
 }
 
 public function equip1(whatToEquip : GameObject){
@@ -59,18 +60,18 @@ return item1equipped;
 }
 
 public function ApplyDamage (damage : float) {
-playerHealth = playerHealth - damage;
+PlayerPrefs.SetFloat("PlayerHealth", PlayerPrefs.GetFloat("PlayerHealth") - damage);
 }
 
 public function getGold (gold : int){
 playerGold += gold;
-PlayerPrefs.SetInt("PlayerGold", playerGold);
+PlayerPrefs.SetFloat("PlayerGold", playerGold);
 }
 
 
 function Update () {
 aimCharacter(); 	//Aims the character in the direction of the mouse
-if (playerHealth <= 0){
+if (PlayerPrefs.GetFloat("PlayerHealth") <= 0){
 Application.LoadLevel("Shop");
 }
 

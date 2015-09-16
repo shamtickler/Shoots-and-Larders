@@ -6,16 +6,10 @@ var healthNumber : Text;
 var healthSlider : Slider;
 
 function Start () {
-var Player : GameObject;
-Player = GameObject.FindGameObjectWithTag("Player");
-health = Player.GetComponent(PlayerCharacterController).playerHealth;
-healthSlider.maxValue = health;
+healthSlider.maxValue = PlayerPrefs.GetFloat("PlayerMaxHealth");
 }
 
 function Update () {
-var Player : GameObject;
-Player = GameObject.FindGameObjectWithTag("Player");
-health = Player.GetComponent(PlayerCharacterController).playerHealth;
-healthNumber.text = health.ToString();
-healthSlider.value = health;
+healthNumber.text = PlayerPrefs.GetFloat("PlayerHealth").ToString();
+healthSlider.value = PlayerPrefs.GetFloat("PlayerHealth");
 }
