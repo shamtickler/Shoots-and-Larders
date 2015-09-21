@@ -4,7 +4,7 @@ import UnityEngine.UI;
 public var mouseEnter : Texture;
 public var mouseExit : Texture;
 public var emptySlot : Texture;
-private var showStats : boolean = true;
+private var showStats : boolean = false;
 private var EquippedWeapon : GameObject;
 
 var damage : Text;

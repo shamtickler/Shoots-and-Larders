@@ -112,6 +112,7 @@ deathTimer -= Time.deltaTime;
 }
 
 function ShootWeapon(){
+PlayerPrefs.SetFloat("CameraShakeTime", 0.05);
 player = GameObject.FindGameObjectWithTag("Player");
 barrel = player.GetComponent(PlayerCharacterController).barrel;
 

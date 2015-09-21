@@ -1,15 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\ShopUI.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GunScript.js">
     <Files>
-      <File FileName="Assets\Scripts\UI\MouseHoverIcon.js" Line="46" Column="24" />
-      <File FileName="Assets\Scripts\UI\ShopUI.js" Line="20" Column="1" />
-      <File FileName="Assets\Scripts\Basic_Enemy.js" Line="33" Column="34" />
-      <File FileName="Assets\Scripts\EnemySpawner.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GunScript.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\GoldScript.js" Line="4" Column="16" />
-      <File FileName="Assets\Scripts\PlayerCharacterController.js" Line="33" Column="34" />
-      <File FileName="Assets\Scripts\UI\Health Script.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraControllerV3.js" Line="9" Column="31" />
+      <File FileName="Assets\Scripts\Effects\CameraShake.js" Line="4" Column="30" />
+      <File FileName="Assets\Scripts\GunScript.js" Line="16" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
