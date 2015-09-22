@@ -1,11 +1,11 @@
 ﻿#pragma strict
 
 var currentCamera : Camera; // set this via inspector
-var shakeAmount : float = 0.5;
+//var shakeAmount : float = PlayerPrefs.GetFloat("CameraShakeAmmount");
  
 function Update() {
   if (PlayerPrefs.GetFloat("CameraShakeTime") > 0) {
-    currentCamera.transform.position = Random.insideUnitSphere * shakeAmount + currentCamera.transform.position;
+    currentCamera.transform.position = Random.insideUnitSphere * PlayerPrefs.GetFloat("CameraShakeAmmount") + currentCamera.transform.position;
     PlayerPrefs.SetFloat("CameraShakeTime",(PlayerPrefs.GetFloat("CameraShakeTime") - Time.deltaTime));
  
   } else {

@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+private var deathTimer : float = 60;
+public var cameraShakeIntensity : float;
+public var cameraShakeTime : float;
 public var range : float = 60;
 public var fireRate : float = 1;
 public var damage : float = 20;
@@ -19,7 +22,9 @@ var panelBackground : Image;
 var ispistol : boolean;
 var ismachinegun : boolean;
 var isshotgun : boolean;
-private var deathTimer : float = 60;
+var isRocketLauncher : boolean;
+
+var rocketProjectile : GameObject;
 
 var dmgTxt : Text;
 var frTxt : Text;
@@ -35,6 +40,8 @@ fireRate = Random.Range(0.4,0.3);
 damage = Random.Range(40.0*multiplier,60.0*multiplier);
 projectiles = 1.0;
 spreadFactor = Random.Range(5.0,0);
+cameraShakeIntensity = 0.0;
+cameraShakeTime = 0.0;
 
 }else if (ismachinegun == true){
 range = Random.Range(40,60);
@@ -42,18 +49,32 @@ fireRate = Random.Range(0.3,0.08);
 damage = Random.Range(32.0*multiplier,42.0*multiplier);
 projectiles = 1.0;
 spreadFactor = Random.Range(16.0,0);
+cameraShakeIntensity = 0.0;
+cameraShakeTime = 0.0;
 
 }else if (isshotgun == true){
 range = Random.Range(30,40);
-fireRate = Random.Range(1.0,0.6);
-damage = Random.Range(6.0*multiplier,8.0*multiplier);
+fireRate = Random.Range(0.9,0.6);
+damage = Random.Range(9.0*multiplier,12.0*multiplier);
 projectiles = Random.Range(8,12);
 spreadFactor = Random.Range(40,20);
+cameraShakeIntensity = 0.1;
+cameraShakeTime = 0.1;
+
+ }else if (isRocketLauncher == true){
+ range = Random.Range(60,90);
+fireRate = Random.Range(1.2,0.8);
+damage = Random.Range(90*multiplier,140*multiplier);
+projectiles = 1;
+spreadFactor = Random.Range(8,0);
+cameraShakeIntensity = 0.3;
+cameraShakeTime = 0.2;
  }
 damage = damage * PlayerPrefs.GetFloat("DamageMultiplier");
 }
 function Start(){
 player = GameObject.FindGameObjectWithTag("Player");
+panelBackground.color = new Color(245.0/255.0,75.0/255.0,95.0/255.0, 75.0/255.0);
 }
 
 function OnMouseOver(){
@@ -65,14 +86,16 @@ function OnMouseOver(){
 	frTxt.text = displayATKSpeed.ToString();
 	accTxt.text = spreadFactor.ToString();
 	projTxt.text = projectiles.ToString();
-	var equippedWeapon : GameObject = player.GetComponent(PlayerCharacterController).weapon1;
-	var dmg : float = equippedWeapon.GetComponent(GunScript).damage;
-	var fr : float = equippedWeapon.GetComponent(GunScript).fireRate;
-	var proj : int = equippedWeapon.GetComponent(GunScript).projectiles;
-	if (((damage*projectiles)/fireRate)>((dmg*proj)/fr)){
-	//var img : Image = panelBackground.GetComponent<Image>();
+	
+	if (player.GetComponent(PlayerCharacterController).item1equipped == true){
+		var equippedWeapon : GameObject = player.GetComponent(PlayerCharacterController).weapon1;
+		var dmg : float = equippedWeapon.GetComponent(GunScript).damage;
+		var fr : float = equippedWeapon.GetComponent(GunScript).fireRate;
+		var proj : int = equippedWeapon.GetComponent(GunScript).projectiles;
+		if (((damage*projectiles)/fireRate)>((dmg*proj)/fr)){
 		panelBackground.color = new Color(95.0/255.0,245.0/255.0,160.0/255.0, 100.0/255.0);
-	 }else{panelBackground.color = new Color(245.0/255.0,75.0/255.0,95.0/255.0, 75.0/255.0);}
+		 }else{panelBackground.color = new Color(245.0/255.0,75.0/255.0,95.0/255.0, 75.0/255.0);}
+	 }
 	}
 }
 
@@ -112,7 +135,7 @@ deathTimer -= Time.deltaTime;
 }
 
 function ShootWeapon(){
-PlayerPrefs.SetFloat("CameraShakeTime", 0.05);
+
 player = GameObject.FindGameObjectWithTag("Player");
 barrel = player.GetComponent(PlayerCharacterController).barrel;
 
@@ -123,7 +146,24 @@ if (x>=fireRate){
 	var audio: AudioSource = GetComponent.<AudioSource>(); //audio gunshot sounds
 	audio.clip = gunshot1;
 	audio.Play();   
+	
+	PlayerPrefs.SetFloat("CameraShakeTime", cameraShakeTime);
+	PlayerPrefs.SetFloat("CameraShakeAmmount",cameraShakeIntensity);
        
+    if (isshotgun == true || ismachinegun == true || ispistol == true){
+    FireBullets();
+    }else if (isRocketLauncher == true){
+    FireRockets();
+    }
+       
+
+        	
+     }
+
+
+}
+
+function FireBullets(){
        for(var i : int =0 ; i < projectiles; i++)
        {
 		  
@@ -158,8 +198,14 @@ if (x>=fireRate){
 	        	newLine.SetPosition(1, (barrel.transform.position + direction * range));
 	        	}
         	}
-        	
-        }
-
-
 }
+
+function FireRockets(){
+var projectile : GameObject = Instantiate(rocketProjectile, barrel.position, barrel.transform.rotation);
+projectile.GetComponent(ProjectileController).SetDamage(damage);
+}
+
+
+
+
+

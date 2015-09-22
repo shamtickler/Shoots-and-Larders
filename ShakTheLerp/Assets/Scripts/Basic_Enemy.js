@@ -11,6 +11,7 @@ public var goldValue : int = 150;
 var lootWeapon1 : GameObject;
 var lootWeapon2 : GameObject;
 var lootWeapon3 : GameObject;
+var lootWeapon4 : GameObject;
 var slider : Slider;
 var canvas : Canvas;
 private var myLevel : float;
@@ -48,6 +49,9 @@ var rndnum : float = Random.Range(100, 0);
 	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
 	}else if(rndnum>85 && rndnum<90){
 	droppedWeapon = Instantiate(lootWeapon3, transform.position, Quaternion.identity);
+	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
+	}else if(rndnum>50 && rndnum<85){
+	droppedWeapon = Instantiate(lootWeapon4, transform.position, Quaternion.identity);
 	droppedWeapon.GetComponent(GunScript).randomizeStats(myLevel);
 	}
 
